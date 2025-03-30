@@ -55,6 +55,7 @@ export async function DELETE(req: Request) {
             { status: 200 }
         );
     } catch (_) {
+        // Error handling without referencing the caught error
         return NextResponse.json(
             { success: false, message: "Internal server error" },
             { status: 500 }

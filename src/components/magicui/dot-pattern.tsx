@@ -63,7 +63,9 @@ interface DotPatternProps extends React.SVGProps<SVGSVGElement> {
 export function DotPattern({
   width = 16,
   height = 16,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   x: _x = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   y: _y = 0,
   cx = 1,
   cy = 1,

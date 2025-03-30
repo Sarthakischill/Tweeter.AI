@@ -8,7 +8,6 @@ export function createServerSupabaseClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        // @ts-expect-error - Next.js cookies() typing issue
         get(name) {
           // @ts-expect-error - Next.js cookies() typing issue
           return cookies().get(name)?.value;

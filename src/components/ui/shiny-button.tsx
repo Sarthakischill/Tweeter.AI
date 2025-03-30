@@ -4,6 +4,7 @@ import React from "react";
 import {
   motion,
   type AnimationProps,
+  type MotionProps,
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -28,16 +29,17 @@ const animationProps = {
   },
 } as AnimationProps;
 
-interface ShinyButtonProps extends React.HTMLAttributes<HTMLElement> {
+type ShinyButtonProps = MotionProps & {
   children: React.ReactNode;
   className?: string;
   asDiv?: boolean;
-}
+  onClick?: React.MouseEventHandler<HTMLElement>;
+};
 
 export const ShinyButton = React.forwardRef<
   HTMLElement, 
   ShinyButtonProps
->(({ children, className, asDiv = false, ...props }, ref) => {
+>(({ children, className, asDiv = false, onClick, ...props }, ref) => {
   // If asDiv is true, render as a motion.div to prevent button nesting
   return asDiv ? (
     <motion.div
@@ -46,6 +48,7 @@ export const ShinyButton = React.forwardRef<
         "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/20%)] cursor-pointer",
         className,
       )}
+      onClick={onClick}
       {...animationProps}
       {...props}
     >
@@ -73,6 +76,7 @@ export const ShinyButton = React.forwardRef<
         "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/20%)]",
         className,
       )}
+      onClick={onClick}
       {...animationProps}
       {...props}
     >

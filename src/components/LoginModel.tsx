@@ -26,7 +26,7 @@ export default function LoginModal({ onClose, showLoginModal }: LoginModelProps)
                             Login to Continue
                         </CustomDialogTitle>
                         <CustomDialogDescription className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                            You've reached the free tier usage limit. Sign in to unlock full access to our AI-powered features and continue your journey.
+                            You&apos;ve reached the free tier usage limit. Sign in to unlock full access to our AI-powered features and continue your journey.
                         </CustomDialogDescription>
                     </div>
                     

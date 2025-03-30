@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import { signIn, signUp } from '@/lib/supabase';
 import { toast } from 'sonner';
 import { X, AlertCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { 
   CustomDialog,
   CustomDialogContent,
@@ -43,7 +42,7 @@ export function AuthDialog({ trigger, onSuccessfulAuth }: {
 
     try {
       if (mode === 'login') {
-        const { data, error } = await signIn(email, password);
+        const { error } = await signIn(email, password);
         if (error) {
           setError(error.message || 'Login failed. Please check your credentials.');
           return;
@@ -57,7 +56,7 @@ export function AuthDialog({ trigger, onSuccessfulAuth }: {
           return;
         }
 
-        const { data, error } = await signUp(email, password, name);
+        const { error } = await signUp(email, password, name);
         if (error) {
           // Handle specific error cases
           if (error.message.includes('already registered')) {
@@ -74,8 +73,9 @@ export function AuthDialog({ trigger, onSuccessfulAuth }: {
         setOpen(false);
         if (onSuccessfulAuth) onSuccessfulAuth();
       }
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed');
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message || 'Authentication failed');
     } finally {
       setLoading(false);
     }

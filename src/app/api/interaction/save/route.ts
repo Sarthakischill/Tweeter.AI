@@ -19,7 +19,7 @@ export async function POST(request: Request) {
         }
 
         // Save the interaction in Supabase
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('interactions')
             .insert({
                 user_id: session.user.id,

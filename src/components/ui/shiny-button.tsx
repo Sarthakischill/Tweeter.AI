@@ -4,7 +4,6 @@ import React from "react";
 import {
   motion,
   type AnimationProps,
-  type HTMLMotionProps,
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -29,23 +28,20 @@ const animationProps = {
   },
 } as AnimationProps;
 
-// Create a more generic type that doesn't cause type errors
-interface ShinyButtonProps {
+interface ShinyButtonProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   className?: string;
   asDiv?: boolean;
-  onClick?: React.MouseEventHandler;
-  [key: string]: any; // Allow any other props
 }
 
 export const ShinyButton = React.forwardRef<
-  HTMLElement, // Use HTMLElement instead of HTMLButtonElement
+  HTMLElement, 
   ShinyButtonProps
 >(({ children, className, asDiv = false, ...props }, ref) => {
   // If asDiv is true, render as a motion.div to prevent button nesting
   return asDiv ? (
     <motion.div
-      ref={ref as any}
+      ref={ref as React.Ref<HTMLDivElement>}
       className={cn(
         "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/20%)] cursor-pointer",
         className,
@@ -72,7 +68,7 @@ export const ShinyButton = React.forwardRef<
     </motion.div>
   ) : (
     <motion.button
-      ref={ref as any}
+      ref={ref as React.Ref<HTMLButtonElement>}
       className={cn(
         "relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/20%)]",
         className,

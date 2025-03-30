@@ -19,7 +19,6 @@ import Link from "next/link";
 import { signOut } from "@/lib/supabase";
 import { useAuth } from "@/app/Providers";
 import { AuthDialog } from "./auth/AuthDialog";
-import { Button } from "./ui/button";
 
 export default function Profile() {
     const { user, refreshSession } = useAuth();

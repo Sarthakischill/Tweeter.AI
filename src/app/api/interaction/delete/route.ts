@@ -54,7 +54,7 @@ export async function DELETE(req: Request) {
             { success: true, message: "Interaction deleted successfully" },
             { status: 200 }
         );
-    } catch (error) {
+    } catch (_) {
         return NextResponse.json(
             { success: false, message: "Internal server error" },
             { status: 500 }

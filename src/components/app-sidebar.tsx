@@ -31,12 +31,11 @@ import { Settings } from "lucide-react"
 import CorePromptForm from "./CorePromptForm"
 import { useAuth } from "@/app/Providers"
 import { useEffect, useState } from "react"
-import { getInteractions, getUserProfile } from "@/lib/supabase"
+import { getInteractions } from "@/lib/supabase"
 
 export function AppSidebar() {
     const { user } = useAuth();
     const [interactions, setInteractions] = useState<HistoryType[]>([]);
-    const [userProfile, setUserProfile] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -47,12 +46,6 @@ export function AppSidebar() {
             }
 
             try {
-                // Get user profile
-                const { data: profileData } = await getUserProfile(user.id);
-                if (profileData) {
-                    setUserProfile(profileData);
-                }
-
                 // Get interactions
                 const { data: interactionsData } = await getInteractions(user.id);
                 if (interactionsData) {

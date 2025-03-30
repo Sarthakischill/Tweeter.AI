@@ -8,17 +8,17 @@ export function createServerSupabaseClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        // @ts-ignore - Next.js cookies() typing issue
+        // @ts-expect-error - Next.js cookies() typing issue
         get(name) {
-          // @ts-ignore - Next.js cookies() typing issue
+          // @ts-expect-error - Next.js cookies() typing issue
           return cookies().get(name)?.value;
         },
         set(name, value, options) {
-          // @ts-ignore - Next.js cookies() typing issue
+          // @ts-expect-error - Next.js cookies() typing issue
           cookies().set(name, value, options);
         },
         remove(name, options) {
-          // @ts-ignore - Next.js cookies() typing issue
+          // @ts-expect-error - Next.js cookies() typing issue
           cookies().set(name, '', { ...options, maxAge: 0 });
         },
       },

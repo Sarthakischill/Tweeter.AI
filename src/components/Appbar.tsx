@@ -9,7 +9,7 @@ export default function Appbar() {
             <nav className="w-[60vw] max-lg:w-[80vw] max-sm:w-full mx-auto flex items-center justify-between px-4">
                 <h1>
                     <Link href="/" className={`font-extrabold text-xl max-sm:text-lg tracking-tight`}>
-                        Tweeter.AI
+                        tweeter.AI
                     </Link>
                 </h1>
 
